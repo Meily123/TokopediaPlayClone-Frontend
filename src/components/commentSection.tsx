@@ -58,6 +58,8 @@ const CommentSection: React.FC<CommentProps> = ({ id }) => {
         }
     };
 
+    const reverseComments = [...comments].reverse();
+
     return (
         <div className="comment-section h-[100%] flex flex-col-reverse">
             <form onSubmit={handleCommentSubmit} className="">
@@ -72,10 +74,10 @@ const CommentSection: React.FC<CommentProps> = ({ id }) => {
                 </button>
             </form>
             <div className="comment-list flex-grow overflow-y-auto flex flex-col-reverse">
-                {comments.map((comment, index) => (
+                {reverseComments.map((comment, index) => (
                     <div key={comment.id} className="comment py-1 flex">
                         <p className="bg-blue-500 grid-flow-dense p-2 rounded-md word-wrap">
-                            <p className="font-bold flex-wrap">{comment.username}</p> {comment.content}
+                            <p className="font-bold flex-wrap">{comment.username + index}</p> {comment.content}
                         </p>
                     </div>
                 ))}
