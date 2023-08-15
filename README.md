@@ -3,6 +3,7 @@
 A Tokopedia Play clone project built using React, Tailwind CSS, and real-time features.
 
 ## Features
+![image](https://github.com/Meily123/TokopediaPlayClone-Frontend/assets/111854859/71fcf218-422b-4f21-b72d-5b76ff18bf00)
 
 - User can explore video content on the home page.
 - User can click on each video to view its details and associated products.
