@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 import {serverUrl} from "../shared/constants";
+import {useUserContext} from "../hooks/userProviders";
 
 const socket = io(`${serverUrl}`);
 
@@ -19,6 +20,7 @@ const CommentSection: React.FC<CommentProps> = ({ id }) => {
     const [comments, setComments] = useState<Comment[]>([]);
     const [newComment, setNewComment] = useState('');
     const [videoId, ] = useState<string>(id);
+    const { user } = useUserContext();
 
     useEffect(() => {
         socket.emit('joinRoom', id);
@@ -27,11 +29,9 @@ const CommentSection: React.FC<CommentProps> = ({ id }) => {
             setComments(comments);
         });
 
-
-        // Listen for new comments from the server
         socket.on('newComment', (comment) => {
             console.log(comment);
-            setComments((prevComments) => [comment, ...prevComments]);
+            setComments((prevComments) => [...prevComments, comment]);
         });
 
         socket.on('connect', () => {
@@ -43,7 +43,7 @@ const CommentSection: React.FC<CommentProps> = ({ id }) => {
         });
 
         return () => {
-            socket.off('newComment'); // Remove the event listener when component unmounts
+            socket.off('newComment');
         };
     }, [id]);
 
@@ -51,9 +51,8 @@ const CommentSection: React.FC<CommentProps> = ({ id }) => {
         e.preventDefault();
         if (newComment) {
             // Send new comment to the server
-            socket.emit('newComment', { videoId, username: "meily1234", comment: newComment });
+            socket.emit('newComment', { videoId, username: user? user.username: "guest", comment: newComment });
 
-            // Clear the input field after submission
             setNewComment('');
         }
     };
@@ -74,10 +73,10 @@ const CommentSection: React.FC<CommentProps> = ({ id }) => {
                 </button>
             </form>
             <div className="comment-list flex-grow overflow-y-auto flex flex-col-reverse">
-                {reverseComments.map((comment, index) => (
+                {reverseComments.map((comment) => (
                     <div key={comment.id} className="comment py-1 flex">
                         <p className="bg-blue-500 grid-flow-dense p-2 rounded-md word-wrap">
-                            <p className="font-bold flex-wrap">{comment.username + index}</p> {comment.content}
+                            <p className="font-bold word-wrap">{comment.username}</p> {comment.content}
                         </p>
                     </div>
                 ))}

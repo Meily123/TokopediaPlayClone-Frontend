@@ -26,8 +26,8 @@ const Register = () => {
 
             if (response.ok) {
                 console.log('Registration successful');
-                // Optionally, you can navigate to another page after successful registration
-                navigate('/users/login'); // Use useNavigate if using React Router v6
+
+                navigate('/users/login');
             } else {
                 console.error('Registration failed');
             }

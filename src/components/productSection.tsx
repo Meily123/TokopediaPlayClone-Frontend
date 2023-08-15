@@ -2,7 +2,7 @@ import React from 'react';
 import {Product} from "../helper/products";
 
 interface ProductsSectionProps {
-    Products: Product[]; // Define the prop type
+    Products: Product[];
 }
 
 const ProductsSection: React.FC<ProductsSectionProps> = ({ Products }) => {
@@ -11,8 +11,8 @@ const ProductsSection: React.FC<ProductsSectionProps> = ({ Products }) => {
 
     const CurrencyFormatter = ({ value }: { value: number }) => {
         const formattedValue = value.toLocaleString('en-US', {
-            minimumFractionDigits: 0, // Change minimum fraction digits to 0
-            maximumFractionDigits: 0, // Change maximum fraction digits to 0
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0,
         });
 
         return `Rp. ${formattedValue}`;

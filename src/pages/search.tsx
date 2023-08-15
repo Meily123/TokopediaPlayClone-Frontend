@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SearchResultsPage from "../components/searchResult";
-import handlerGoTo from "../helper/handlerGoTo";
 
 function SearchPage() {
     const navigate = useNavigate();

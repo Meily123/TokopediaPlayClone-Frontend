@@ -1,23 +1,12 @@
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
-
-type Image = {
-    _id: string;
-    thumbnailUrl: string;
-    category: string;
-    views: number;
-    description: string;
-    createdBy: string;
-    videoUrl: string;
-    products: string[];
-    likes: number;
-};
+import {Video} from "../helper/videos";
 
 type FilteredImagesProps = {
-    images: Image[];
+    videos: Video[];
 };
 
-const Videos: React.FC<FilteredImagesProps> = ({ images}) => {
+const Videos: React.FC<FilteredImagesProps> = ({ videos}) => {
     const navigate = useNavigate();
 
     const navigateVideoDetail = (id: string) => {
@@ -36,12 +25,12 @@ const Videos: React.FC<FilteredImagesProps> = ({ images}) => {
 
     return (
         <div className="flex flex-wrap items-center m-2">
-            {images.map((image) => (
-                <div className="w-1/2 sm:w-1/3 md:w-1/6 2xl:w-1/8 p-1.5" key={image._id} onClick={()=>{navigateVideoDetail(image._id)}}>
+            {videos.map((video) => (
+                <div className="w-1/2 sm:w-1/3 md:w-1/6 2xl:w-1/8 p-1.5" key={video._id} onClick={()=>{navigateVideoDetail(video._id)}}>
                     <div
                         className="rounded-md w-full h-0 pb-[179%] bg-cover bg-center relative overflow-hidden"
                         style={{
-                            backgroundImage: `linear-gradient(0deg, rgba(63,63,63,0.9)0%, rgba(234,241,245,0) 50%, rgba(255,255,255,0) 100%), url('${image.thumbnailUrl}')`
+                            backgroundImage: `linear-gradient(0deg, rgba(63,63,63,0.9)0%, rgba(234,241,245,0) 50%, rgba(255,255,255,0) 100%), url('${video.thumbnailUrl}')`
                         }}
                     >
                         <div className="absolute top-0 left-0 text-white">
@@ -53,10 +42,10 @@ const Videos: React.FC<FilteredImagesProps> = ({ images}) => {
                                             d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
                                     </svg>
 
-                                    <span className="ml-1 font-bold text-xs"> {image.views}</span>
+                                    <span className="ml-1 font-bold text-xs"> {video.views}</span>
                                 </span>
                         </div>
-                        <div className={`absolute bottom-0 left-0 right-0 px-1.5 py-1.5  h-1/4 transition-all duration-300 ${expandedImageId === image._id ? 'overflow-scroll' : 'h-auto'}`} onClick={() => handleImageClick(image._id)}>
+                        <div className={`absolute bottom-0 left-0 right-0 px-1.5 py-1.5  h-1/4 transition-all duration-300 ${expandedImageId === video._id ? 'overflow-scroll' : 'h-auto'}`} onClick={() => handleImageClick(video._id)}>
                             <div className="px-0.5 text-white text-xxxs float-left rounded-sm bg-discount-green" >
                                     <span className="inline-flex items-center px-0.5 font-bold">
                                        <svg
@@ -95,15 +84,15 @@ const Videos: React.FC<FilteredImagesProps> = ({ images}) => {
                                                     d="M5 7.2a2.2 2.2 0 0 1 2.2 -2.2h1a2.2 2.2 0 0 0 1.55 -.64l.7 -.7a2.2 2.2 0 0 1 3.12 0l.7 .7a2.2 2.2 0 0 0 1.55 .64h1a2.2 2.2 0 0 1 2.2 2.2v1a2.2 2.2 0 0 0 .64 1.55l.7 .7a2.2 2.2 0 0 1 0 3.12l-.7 .7a2.2 2.2 0 0 0 -.64 1.55 v1a2.2 2.2 0 0 1 -2.2 2.2h-1a2.2 2.2 0 0 0 -1.55 .64l-.7 .7a2.2 2.2 0 0 1 -3.12 0l-.7 -.7a2.2 2.2 0 0 0 -1.55 -.64h-1a2.2 2.2 0 0 1 -2.2 -2.2v-1a2.2 2.2 0 0 0 -.64 -1.55l-.7 -.7a2.2 2.2 0 0 1 0 -3.12l.7 -.7a2.2 2.2 0 0 0 .64 -1.55 v-1"
                                                 />
                                        </svg>
-                                        <span className="ml-1 font-bold"> {image.category}</span>
+                                        <span className="ml-1 font-bold"> {video.category}</span>
                                     </span>
                             </div>
                             <br/>
-                            <p className={`text-left mb-0.5 text-xxs text-white ${expandedImageId === image._id ? '' : 'truncate'}`}>
-                                {image.description}
+                            <p className={`text-left mb-0.5 text-xxs text-white ${expandedImageId === video._id ? '' : 'truncate'}`}>
+                                {video.description}
                             </p>
                             <p className="text-left mb-1 text-xxs text-gray-300">
-                                {image.createdBy}
+                                {video.createdBy}
                             </p>
                         </div>
                     </div>

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {useNavigate} from "react-router-dom";
-import home from "./home";
 import {serverUrl} from "../shared/constants";
 
 const Login = () => {
@@ -20,13 +19,13 @@ const Login = () => {
             });
 
             if (response.ok) {
-                // Successfully logged in
+
                 const data = await response.json();
                 localStorage.setItem('authToken', data.data.token);
-                // Save the authentication token or handle session here
+
                 navigate("/");
             } else {
-                // Handle login failure
+
                 console.error('Login failed');
             }
         } catch (error) {

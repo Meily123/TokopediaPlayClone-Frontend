@@ -3,8 +3,7 @@ import Gallery from '../components/gallery';
 import useVideos from "../hooks/useVideos";
 
 const Home: React.FC = () => {
-    // Sample image data with different categories
-    const { videos, loading } = useVideos();
+    const { videos, } = useVideos();
 
     const [category, setCategory] = useState<string | null>(null);
 
@@ -14,7 +13,7 @@ const Home: React.FC = () => {
 
     return (
         <div className="Home">
-            <Gallery images={videos? videos.data: []} category={category} onCategoryChange={handleCategoryChange} />
+            <Gallery videos={videos? videos.data: []} category={category} onCategoryChange={handleCategoryChange} />
         </div>
     );
 };

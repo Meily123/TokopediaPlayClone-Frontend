@@ -1,32 +1,19 @@
-import React, {useState} from 'react';
-import {useNavigate} from "react-router-dom";
+import React from 'react';
 import HomeHeader from "./homeHeader";
 import Videos from "./videos";
-
-// Define a type for the image object
-type Image = {
-    _id: string;
-    thumbnailUrl: string;
-    category: string;
-    views: number;
-    description: string;
-    createdBy: string;
-    videoUrl: string;
-    products: string[];
-    likes: number;
-};
+import {Video} from "../helper/videos";
 
 type GalleryProps = {
-    images: Image[];
+    videos: Video[];
     category: string | null;
     onCategoryChange: (category: string | null) => void;
 };
 
-const Gallery: React.FC<GalleryProps> = ({ images, category, onCategoryChange }) => {
+const Gallery: React.FC<GalleryProps> = ({ videos, category, onCategoryChange }) => {
 
     const filteredImages = category
-        ? images.filter((image) => image.category === category)
-        : images;
+        ? videos.filter((video) => video.category === category)
+        : videos;
 
     return (
         <div className="">
@@ -35,7 +22,7 @@ const Gallery: React.FC<GalleryProps> = ({ images, category, onCategoryChange })
             <br/>
             <br/>
             <br/>
-            <Videos images={filteredImages}/>
+            <Videos videos={filteredImages}/>
         </div>
     );
 };

@@ -1,17 +1,15 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSearch } from '../hooks/useSearch';
-import Gallery from "./gallery";
-import Videos from "./videos"; // Adjust the path accordingly
+import Videos from "./videos";
 
 function SearchResultsPage() {
     const location = useLocation();
     const searchQuery = new URLSearchParams(location.search).get('query');
-    const { searchResults, loading } = useSearch(searchQuery);
-    console.log(searchResults);
+    const { searchResults, } = useSearch(searchQuery);
 
     return (
-        <Videos images={searchResults}></Videos>
+        <Videos videos={searchResults}></Videos>
     );
 }
 

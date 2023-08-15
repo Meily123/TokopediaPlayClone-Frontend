@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import handlerGoTo from "../helper/handlerGoTo";
 import {useNavigate} from "react-router-dom";
+import {useUserContext} from "../hooks/userProviders";
 
 type NavigationProps = {
     category: string | null;
@@ -9,6 +10,7 @@ type NavigationProps = {
 
 const HomeHeader: React.FC<NavigationProps> = ({ category, onCategoryChange }) => {
     const navigate = useNavigate();
+    const { user } = useUserContext();
 
     // @ts-ignore
     const handleGoToSearch = () => {
@@ -40,6 +42,19 @@ const HomeHeader: React.FC<NavigationProps> = ({ category, onCategoryChange }) =
                 <button className="border-gray-500 border p-2 m-0.5 rounded-xl" onClick={() => onCategoryChange('Music')}>Music</button>
                 <button className="border-gray-500 border p-2 m-0.5 rounded-xl" onClick={() => onCategoryChange('Makanan')}>Makanan</button>
                 <button className="border-gray-500 border p-2 m-0.5 rounded-xl" onClick={() => onCategoryChange('Peliharaan')}>Peliharaan</button>
+                {user && (
+                    <div className="float-right bg-gray-700 border-gray-500 border p-2 m-0.5 rounded-xl">
+                        <div className="inline-flex">
+                            <img
+                                className="h-5 w-5 mr-2 rounded-full cursor-pointer"
+                                src={user.imageUrl}
+                                alt={`${user.username}'s Profile`}
+                            />
+                            <div className="">{user.username}</div>
+                        </div>
+
+                    </div>
+                )}
             </div>
         </header>
     );
