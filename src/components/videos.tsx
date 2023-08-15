@@ -42,11 +42,11 @@ const Videos: React.FC<FilteredImagesProps> = ({ videos}) => {
                                             d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
                                     </svg>
 
-                                    <span className="ml-1 font-bold text-xs"> {video.views/2}</span>
+                                    <span className="ml-1 font-bold text-xs"> {Math.round(video.views/2)}</span>
                                 </span>
                         </div>
                         <div className={`absolute bottom-0 left-0 right-0 px-1.5 py-1.5  h-1/4 transition-all duration-300 ${expandedImageId === video._id ? 'overflow-scroll' : 'h-auto'}`} onClick={() => handleImageClick(video._id)}>
-                            <div className="px-0.5 text-white text-xxxs float-left rounded-sm bg-discount-green" >
+                            <div className="px-0.5 text-white text-xxFs float-left rounded-sm bg-discount-green" >
                                     <span className="inline-flex items-center px-0.5 font-bold">
                                        <svg
                                            className="h-3 w-3 text-white mt-0.5"
@@ -88,10 +88,10 @@ const Videos: React.FC<FilteredImagesProps> = ({ videos}) => {
                                     </span>
                             </div>
                             <br/>
-                            <p className={`text-left mb-0.5 text-xxs text-white ${expandedImageId === video._id ? '' : 'truncate'}`}>
+                            <p className={`text-left mb-0.5 text-xs text-white ${expandedImageId === video._id ? '' : 'truncate'}`}>
                                 {video.description}
                             </p>
-                            <p className="text-left mb-1 text-xxs text-gray-300">
+                            <p className="text-left mb-1 text-xs text-gray-300">
                                 {video.createdBy}
                             </p>
                         </div>
