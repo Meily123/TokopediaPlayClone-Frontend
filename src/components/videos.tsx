@@ -10,6 +10,7 @@ const Videos: React.FC<FilteredImagesProps> = ({ videos}) => {
     const navigate = useNavigate();
 
     const navigateVideoDetail = (id: string) => {
+        console.log(id);
         navigate(`/detail/${id}`);
     };
 
@@ -46,7 +47,7 @@ const Videos: React.FC<FilteredImagesProps> = ({ videos}) => {
                                 </span>
                         </div>
                         <div className={`absolute bottom-0 left-0 right-0 px-1.5 py-1.5  h-1/4 transition-all duration-300 ${expandedImageId === video._id ? 'overflow-scroll' : 'h-auto'}`} onClick={() => handleImageClick(video._id)}>
-                            <div className="px-0.5 text-white text-xxFs float-left rounded-sm bg-discount-green" >
+                            <div className="px-0.5 text-white text-xxs float-left rounded-sm bg-discount-green" >
                                     <span className="inline-flex items-center px-0.5 font-bold">
                                        <svg
                                            className="h-3 w-3 text-white mt-0.5"
