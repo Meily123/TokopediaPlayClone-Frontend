@@ -58,7 +58,7 @@ const ProductPage = () => {
     }, [video])
 
     if (!video) {
-        return <div>Something Went Wrong</div>
+        return <div className="text-white" >Something Went Wrong</div>
     }
 
     const productsData = products?.data;

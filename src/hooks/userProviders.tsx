@@ -3,6 +3,7 @@ import { fetchUser, User } from '../helper/users';
 
 type UserContextType = {
     user: User | null;
+    fetchUserData: () => void;
 };
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -22,7 +23,7 @@ type UserProviderProps = {
 const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     const [user, setUser] = useState<User | null>(null);
 
-    useEffect(() => {
+    const fetchUserData = () => {
         const authToken = localStorage.getItem('authToken');
         if (authToken) {
             fetchUser(authToken)
@@ -33,10 +34,14 @@ const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
                     console.error('Error fetching user data:', error);
                 });
         }
+    };
+
+    useEffect(() => {
+        fetchUserData();
     }, []);
 
     return (
-        <UserContext.Provider value={{ user }}>
+        <UserContext.Provider value={{ user, fetchUserData }}>
             {children}
         </UserContext.Provider>
     );

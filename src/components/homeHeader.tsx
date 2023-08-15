@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import handlerGoTo from "../helper/handlerGoTo";
 import {useNavigate} from "react-router-dom";
 import {useUserContext} from "../hooks/userProviders";
@@ -10,11 +10,22 @@ type NavigationProps = {
 
 const HomeHeader: React.FC<NavigationProps> = ({ category, onCategoryChange }) => {
     const navigate = useNavigate();
-    const { user } = useUserContext();
+    const { user, fetchUserData } = useUserContext();
 
-    // @ts-ignore
+    useEffect(() => {
+        fetchUserData();
+    }, []);
+
     const handleGoToSearch = () => {
         navigate(`search`);
+    };
+
+    const handleGoToLogin = () => {
+        navigate(`users/login`);
+    };
+
+    const handleGoToRegister = () => {
+        navigate(`users/register`);
     };
 
     return (
@@ -42,7 +53,7 @@ const HomeHeader: React.FC<NavigationProps> = ({ category, onCategoryChange }) =
                 <button className="border-gray-500 border p-2 m-0.5 rounded-xl" onClick={() => onCategoryChange('Music')}>Music</button>
                 <button className="border-gray-500 border p-2 m-0.5 rounded-xl" onClick={() => onCategoryChange('Makanan')}>Makanan</button>
                 <button className="border-gray-500 border p-2 m-0.5 rounded-xl" onClick={() => onCategoryChange('Peliharaan')}>Peliharaan</button>
-                {user && (
+                {user?
                     <div className="float-right bg-gray-700 border-gray-500 border p-2 m-0.5 rounded-xl">
                         <div className="inline-flex">
                             <img
@@ -54,7 +65,11 @@ const HomeHeader: React.FC<NavigationProps> = ({ category, onCategoryChange }) =
                         </div>
 
                     </div>
-                )}
+                : <div className="inline-flex float-right">
+                        <button className="border-gray-500 border p-2 m-0.5 rounded-xl" onClick={handleGoToLogin}>Login</button>
+                        <button className="border-gray-500 border p-2 m-0.5 rounded-xl" onClick={handleGoToRegister}>Register</button>
+                  </div>
+                }
             </div>
         </header>
     );
