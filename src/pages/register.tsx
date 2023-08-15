@@ -16,7 +16,7 @@ const Register = () => {
                 return;
             }
 
-            const response = await fetch(`http://${serverUrl}/users/register`, {
+            const response = await fetch(`https://${serverUrl}/users/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

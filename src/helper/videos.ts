@@ -16,7 +16,7 @@ export interface Video {
 }
 
 export async function fetchVideos(): Promise<{data: Video[]}> {
-    const response = await fetch(`http://${serverUrl}/videos`);
+    const response = await fetch(`https://${serverUrl}/videos`);
     if (!response.ok) {
         throw new Error('Failed to fetch videos');
     }
@@ -24,7 +24,7 @@ export async function fetchVideos(): Promise<{data: Video[]}> {
 }
 
 export async function fetchVideoById(id: string | undefined): Promise<{ data: Video }> {
-    const response = await fetch(`http://${serverUrl}/videos/${id}`);
+    const response = await fetch(`https://${serverUrl}/videos/${id}`);
     if (!response.ok) {
         throw new Error('Failed to fetch videos');
     }

@@ -16,7 +16,7 @@ function SearchPage() {
     return (
         <div className="SearchPage text-white">
         <header className="">
-            <div className="float-left inline-flex items-center" onClick={() => {handlerGoTo("http://localhost:3000")}}>
+            <div className="float-left inline-flex items-center" onClick={() => {navigate("/")}}>
                 <svg className="h-6 w-6 text-slate-200 mr-2.5 p-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7"
                           d="M10 19l-7-7m0 0l7-7m-7 7h18"/>

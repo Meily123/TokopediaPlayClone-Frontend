@@ -11,7 +11,7 @@ export interface Product {
 }
 
 export async function fetchProductsByVideoId (id:string|undefined) {
-    const response = await fetch(`http://${serverUrl}/videos/${id}/product`);
+    const response = await fetch(`https://${serverUrl}/videos/${id}/product`);
     if (!response.ok) {
         throw new Error('Failed to fetch video products');
     }

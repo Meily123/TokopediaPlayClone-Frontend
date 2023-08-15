@@ -2,7 +2,7 @@ import {serverUrl} from "../shared/constants";
 
 export async function fetchSearchResults(query: string| null) {
     try {
-        const response = await fetch(`http://${serverUrl}/videos/search?query=${query}`);
+        const response = await fetch(`https://${serverUrl}/videos/search?query=${query}`);
         if (!response.ok) {
             throw new Error('Failed to fetch search results');
         }
