@@ -16,6 +16,11 @@ A Tokopedia Play clone project built using React, Tailwind CSS, and real-time fe
 
 ## Additional Features
 - User authentication and registration
+### ready made user for testing:
+   ```bash
+   username: Tester
+   password: password123
+   ```
 
 ## Deployed Application
 
